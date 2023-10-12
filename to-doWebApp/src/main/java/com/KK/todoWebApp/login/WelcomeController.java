@@ -12,23 +12,20 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
 @SessionAttributes("name")
-public class LoginController {
+public class WelcomeController {
 
-	//private Logger logger= LoggerFactory.getLogger(getClass());
-	@RequestMapping(value="login-jsp", method=RequestMethod.GET)
-	public String gotoLoginPage() {//@RequestParam String name, ModelMap model
 	
-	/*	model.put("name", name);
-    	logger.debug("Request param is {}", name);
+	//private Logger logger= LoggerFactory.getLogger(getClass());
+	@RequestMapping(value="/", method=RequestMethod.GET)
+	public String gotoWelcomePage(ModelMap model) {//@RequestParam String name, 
+	
+		model.put("name", "CoderShaira");
+    /*	logger.debug("Request param is {}", name);
 		logger.info("I want this to be printed at info level");
 		logger.warn("I want this to be printed at warn level");
 		System.out.println("Request Param is: "+ name);
 	*/
-		return "login";
-	}
-	@RequestMapping(value="login-jsp", method=RequestMethod.POST)
-	public String goToWelcomePage(@RequestParam String name, @RequestParam String Password, ModelMap model) {
-		model.put("name", name);
 		return "Welcome";
 	}
+	
 }
