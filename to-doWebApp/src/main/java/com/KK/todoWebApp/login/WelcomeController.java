@@ -1,5 +1,7 @@
 package com.KK.todoWebApp.login;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 /*import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 */
@@ -19,13 +21,18 @@ public class WelcomeController {
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String gotoWelcomePage(ModelMap model) {//@RequestParam String name, 
 	
-		model.put("name", "CoderShaira");
+		model.put("name", getLoggedinUsername());
     /*	logger.debug("Request param is {}", name);
 		logger.info("I want this to be printed at info level");
 		logger.warn("I want this to be printed at warn level");
 		System.out.println("Request Param is: "+ name);
 	*/
 		return "Welcome";
+	}
+	private String getLoggedinUsername() {
+		Authentication authentication=
+				SecurityContextHolder.getContext().getAuthentication();
+		return authentication.getName();
 	}
 	
 }
